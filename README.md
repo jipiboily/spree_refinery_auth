@@ -1,38 +1,30 @@
-Authentication
+Spree Refinery Auth
 ==============
 
-Provides authentication and authorization services for use with Spree
+Provides authentication and authorization services for use with Spree AND Refinery both on the same project. This is most probably not the best solution, but that works.
 
 
-Overview
---------
-
-This gem provides the so-called "core" functionality of Spree and is a requirement for any Spree application or
-store.  The basic data models as well as product catalog and admin functionality are all provided by this gem.
-
-
-Security Warning
-----------------
-
-*This gem provides absolutely no authentication and authorization.  You are strongly encouraged to install
-and use the spree-auth gem in addition to spree-core in order to restrict access to orders and other admin
-functionality.*
-
-
-Testing
+Install
 -------
+add this to your application.rb:
 
-You need to do a quick one-time creation of a test application and then you can use it to run the tests.
+    config.before_initialize do
+      # require 'refinery_patch'
+      require 'restrict_refinery_to_refinery_users'
+    end
 
-    bundle exec rake test_app
+    config.to_prepare do
+      ::Refinery::AdminController.send :include, ::RestrictRefineryToRefineryUsers
+      ::Refinery::AdminController.send :before_filter, :restrict_refinery_to_refinery_users
+    end
 
-Then run the rspec tests
+Add those two Roles in you "spree_roles" table:
 
-    bundle exec rake spec
+- Refinery
+- Superuser
 
-Misc
-----
+Once your app is launched, first go to the Spree user administration and add those two roles to any user that have to.
 
-authentication by token example
-
-    http://localhost:3000/?auth_token=oWBSN16k6dWx46TtSGcp
+Known issues
+------------
+- You can't log out from withing Spree admin, only from Refinery admin
