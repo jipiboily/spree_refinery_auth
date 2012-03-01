@@ -33,5 +33,5 @@ You can now log as a Spree user. refinery_users, refinery_roles and refinery_rol
 
 Known issues
 ------------
-- You can't log out from withing Spree admin, only from Refinery admin
+- You can't log out from withing Spree admin, only from Refinery admin (well, there is no a link to the logout of Refinery which kills the session for both. #monkeypatch)
 - assigning right within Refinery doesn't work
