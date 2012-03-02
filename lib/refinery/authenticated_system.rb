@@ -19,6 +19,7 @@ module Refinery
     def after_sign_in_path_for(resource_or_scope)
       scope = Devise::Mapping.find_scope!(resource_or_scope)
       home_path = "#{scope}_root_path"
+      puts "#{home_path}"
       respond_to?(home_path, true) ? refinery.send(home_path) : refinery.admin_root_path
     end
 

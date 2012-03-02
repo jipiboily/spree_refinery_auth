@@ -8,18 +8,6 @@ Provides authentication and authorization services for use with Spree AND Refine
 
 Install
 -------
-add this to your application.rb:
-
-    config.before_initialize do
-      # require 'refinery_patch'
-      require 'restrict_refinery_to_refinery_users'
-    end
-
-    config.to_prepare do
-      ::Refinery::AdminController.send :include, ::RestrictRefineryToRefineryUsers
-      ::Refinery::AdminController.send :before_filter, :restrict_refinery_to_refinery_users
-    end
-
 Add those two Roles in you "spree_roles" table:
 
 - Refinery
@@ -33,5 +21,6 @@ You can now log as a Spree user. refinery_users, refinery_roles and refinery_rol
 
 Known issues
 ------------
-- You can't log out from withing Spree admin, only from Refinery admin (well, there is no a link to the logout of Refinery which kills the session for both. #monkeypatch)
-- assigning right within Refinery doesn't work
+- You can log out from withing Spree admin, but it uses Refinery's log out link (#monkeypatch)
+- assigning rights within Refinery doesn't work
+- problem with redirection after login from when trying to access "/refinery" at first
