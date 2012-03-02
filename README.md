@@ -16,12 +16,17 @@ Install
 Add to your ```Gemfile```
 
 	gem "spree_refinery_auth", :git => "https://github.com/jipiboily/spree_refinery_auth"
-
+	
 
 In your devise.rb (in config/initializers):
 
 	config.authentication_keys = [ :email ]
 	config.router_name = :spree
+
+Run
+	
+	$ bundle install
+	$ rails s
 
 Add those two Roles in you "spree_roles" table:
 
