@@ -8,7 +8,8 @@ It is an extension that provides authentication and authorization overrides so t
 Requirements
 ------------
 - Spree 1.1.0.beta
-- Refinery 2
+- Refinery 2.0.0
+- Rails 3.2 (there is an issue with Refinery and Rails 3.2.2: [https://github.com/resolve/refinerycms/issues/1383](http://))
 
 Install
 -------
