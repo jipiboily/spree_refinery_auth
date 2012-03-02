@@ -1,5 +1,5 @@
 # WARNING
-Do not use as-is as it is only partially working and I did not everything was tested. There is no spec either, shame.
+Do not use as-is as it is only partially working and not everything was tested. There is no spec either, shame.
 
 Spree Refinery Auth
 ==============
