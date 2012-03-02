@@ -17,10 +17,21 @@ module Spree
     # Setup accessible (or protected) attributes for your model
     attr_accessible :email, :password, :password_confirmation, :remember_me, :persistence_token, :login
 
+
+    # For Refinery
+    accepts_nested_attributes_for :roles
+    attr_accessible :roles_attributes, :roles
+    has_many :plugins, :class_name => "Refinery::UserPlugin", :order => "position ASC", :dependent => :destroy
+    # friendly_id :username
+    accepts_nested_attributes_for :plugins
+    attr_accessible :plugins_attributes, :plugins
+
+
     users_table_name = User.table_name
     roles_table_name = Role.table_name
 
     scope :admin, lambda { includes(:roles).where("#{roles_table_name}.name" => "admin") }
+    scope :refinery_admin, lambda { includes(:roles).where("#{roles_table_name}.name" => "Refinery") }
     scope :registered, where("#{users_table_name}.email NOT LIKE ?", "%@example.net")
 
     class DestroyWithOrdersError < StandardError; end
